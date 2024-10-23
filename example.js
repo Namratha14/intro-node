@@ -9,5 +9,5 @@ const write2file = async() =>{
     const newFilePath = new URL('./demo.js', import.meta.url).pathname;
     await fs.writeFile(newFilePath, `console.log('hello I am from the new file from CLI')`);
 }
-//readPjson();
-write2file()
+readPjson();
+//write2file()

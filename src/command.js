@@ -1,13 +1,18 @@
 import { hideBin } from 'yargs/helpers'
 import yargs from 'yargs'
+import { newNote, getAllNotes, filterNotes, removeNotes, removeAllNotes } from './notes.js'
+import { listNotes } from './utils.js'
+  
 yargs(hideBin(process.argv))
   .command('new <note>', 'create a new note', yargs => {
     return yargs.positional('note', {
       type: 'string',
       description: 'The content of the note you want to create',
     })
-    },(argv) => {
-        console.log(argv.note)
+    },async(argv) => {
+        const tags = argv.tags ? argv.tags.split(',') : []
+        const notes =  await newNote(argv.note, tags)
+        console.log('new note added!', notes)
     }
 ).option('tags', {
     alias: 't',
@@ -23,7 +28,9 @@ yargs(hideBin(process.argv))
       type: 'string'
     })
   }, async (argv) => {
-    const notes = await findNotes(argv.filter)
+    console.log(argv.filter)
+    const notes = await filterNotes(argv.filter);
+    console.log(notes)
     listNotes(notes)
   })
   .command('remove <id>', 'remove a note by id', yargs => {
@@ -32,7 +39,7 @@ yargs(hideBin(process.argv))
       description: 'The id of the note you want to remove'
     })
   }, async (argv) => {
-    const id = await removeNote(argv.id)
+    const id = await removeNotes(argv.id)
     if (id) {
       console.log('Note removed: ', id)
     } else {

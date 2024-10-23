@@ -1,3 +1,24 @@
 {
-    "notes" : []
+  "notes": [
+    {
+      "content": "I need to add this to my notes",
+      "id": 1729573560843
+    },
+    {
+      "tags": [
+        "fun",
+        " home"
+      ],
+      "content": "I need a new room",
+      "id": 1729636274243
+    },
+    {
+      "tags": [
+        "jump",
+        " joy"
+      ],
+      "content": "I got slider and swing",
+      "id": 1729636301141
+    }
+  ]
 }
